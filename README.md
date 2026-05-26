@@ -1,7 +1,7 @@
-## Windows:
+### Windows:
 ```wget -O splunkforwarder-10.0.4-5ea723e837ec-windows-x64.msi https://download.splunk.com/products/universalforwarder/releases/10.0.4/windows/splunkforwarder-10.0.4-5ea723e837ec-windows-x64.msi
 ```
-## Linux: (Debian/RedHat)
+### Linux: (Debian/RedHat)
 ```wget -O splunkforwarder-10.0.4-5ea723e837ec.x86_64.rpm https://download.splunk.com/products/universalforwarder/releases/10.0.4/linux/splunkforwarder-10.0.4-5ea723e837ec.x86_64.rpm
 
 wget -O splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb https://download.splunk.com/products/universalforwarder/releases/10.0.4/linux/splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb
