@@ -17,7 +17,7 @@ SPLUNK_UF_VERSION_DEB="splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb"
 DEPLOYMENT_SERVER="10.220.64.10"     # IP or hostname of your Splunk Deployment Server
 DEPLOYMENT_PORT="8089"
 INSTALL_DIR="/opt"
-SPLUNK_TEMPADMINPASS="StrongPassword123."  # Used only on fresh install, deleted after start
+SPLUNK_TEMPADMINPASS="Password-Change"  # Used only on fresh install, deleted after start
 RECONCILE_CONFIG=1                 # 1 = re-assert deploymentclient.conf even when version matches
 ### End variables
 
