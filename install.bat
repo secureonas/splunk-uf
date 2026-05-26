@@ -9,7 +9,7 @@ if %errorLevel% neq 0 (
 
 :: --- CONFIGURATION VARIABLES ---
 set "SPLUNK_MSI=splunkforwarder-10.0.4-5ea723e837ec-windows-x64.msi"
-set "SPLUNK_SERVER=10.220.64.10"
+set "SPLUNK_SERVER=10.x.x.x"
 set "SPLUNK_DIR=C:\Program Files\SplunkUniversalForwarder"
 set "SPLUNK_BIN=%SPLUNK_DIR%\bin\splunk.exe"
 
