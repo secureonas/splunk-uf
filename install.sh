@@ -14,7 +14,7 @@ set -euo pipefail
 ### Variables — edit before deploying
 SPLUNK_UF_VERSION_RPM="splunkforwarder-10.0.4-5ea723e837ec.x86_64.rpm"
 SPLUNK_UF_VERSION_DEB="splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb"
-DEPLOYMENT_SERVER="10.220.64.10"     # IP or hostname of your Splunk Deployment Server
+DEPLOYMENT_SERVER="10.x.x.x"     # IP or hostname of your Splunk Deployment Server
 DEPLOYMENT_PORT="8089"
 INSTALL_DIR="/opt"
 SPLUNK_TEMPADMINPASS="Password-Change"  # Used only on fresh install, deleted after start
