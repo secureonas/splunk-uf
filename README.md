@@ -1,4 +1,4 @@
-# Splunk Universal Forwarder Installation Packages (v10.0.4)
+# Splunk UF Installation Packages (v10.0.4)
 
 This repository contains the `wget` commands to download the Splunk Universal Forwarder version 10.0.4 (Build 5ea723e837ec) for various operating systems.
 
