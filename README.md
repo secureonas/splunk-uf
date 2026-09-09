@@ -13,11 +13,11 @@ wget -O splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi "https://download.sp
 
 ## Linux
 
-### Redhat
+### Debian
 ```bash
 wget -O splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/10.2.7/linux/splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb"
 ```
-### Debian
+### Redhat
 ```bash
 wget -O splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm "https://download.splunk.com/products/universalforwarder/releases/10.2.7/linux/splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm"
 ```
