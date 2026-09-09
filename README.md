@@ -1,23 +1,119 @@
 # Splunk UF Installation Packages (v10.2.7)
 
-This repository contains the `wget` commands to download the Splunk Universal Forwarder version 10.2.7  for various operating systems.
+Install / upgrade scripts and download links for the Splunk Universal Forwarder **10.2.7** (build `c0bff5b0fac3`).
+
+Both scripts install from a **local package file** — no internet access is needed on the target host. Download the installer first, put it in the **same folder** as the script, then run the script.
 
 ---
 
-## Windows
+## Before you run anything
 
-### MSI Installer (x64)
+**You must edit the script and set your Splunk server.** The repo ships with a placeholder (`10.x.x.x`) that will not work.
+
+### Linux — `install.sh`
+
+Edit the variables block at the top:
+
 ```bash
+SPLUNK_UF_VERSION_RPM="splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm"
+SPLUNK_UF_VERSION_DEB="splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb"
+DEPLOYMENT_SERVER="10.x.x.x"          # <-- CHANGE THIS: IP or DNS name of the Splunk Deployment Server
+DEPLOYMENT_PORT="8089"
+INSTALL_DIR="/opt"
+SPLUNK_TEMPADMINPASS="Password-Change" # <-- CHANGE THIS: used only on fresh install, deleted after start
+RECONCILE_CONFIG=1                     # 1 = re-apply deploymentclient.conf even if the version already matches
+```
+
+### Windows — `install.bat`
+
+Edit the configuration block:
+
+```bat
+set "SPLUNK_MSI=splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi"
+set "SPLUNK_SERVER=10.x.x.x"          :: <-- CHANGE THIS: IP or DNS name of the Splunk Deployment Server
+set "SPLUNK_DIR=C:\Program Files\SplunkUniversalForwarder"
+```
+
+Both a raw IP and a DNS name work, e.g. `10.20.30.40` or `splunk-ds.customer.local`. The management port `8089` must be reachable from the client.
+
+---
+
+## Downloading the package
+
+### Windows — MSI Installer (x64)
+
+```
 wget -O splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi "https://download.splunk.com/products/universalforwarder/releases/10.2.7/windows/splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi"
 ```
 
-## Linux
+### Linux — Debian / Ubuntu
 
-### Debian
-```bash
+```
 wget -O splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/10.2.7/linux/splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb"
 ```
-### Redhat
-```bash
+
+### Linux — RHEL / CentOS / Rocky
+
+```
 wget -O splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm "https://download.splunk.com/products/universalforwarder/releases/10.2.7/linux/splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm"
 ```
+
+---
+
+## Running the installer
+
+### Linux
+
+The script loses its permission bit when downloaded or copied over SCP/WinSCP, so **you have to make it executable first**:
+
+```bash
+chmod +x install.sh
+sudo ./install.sh
+```
+
+Must be run as **root**. The script auto-detects `dpkg` vs `rpm` and picks the matching package from its own directory. Output is written to both the console and `/var/log/splunkuf-install.log`.
+
+If you edited the file on Windows, strip the CRLF line endings or Bash will fail with `bad interpreter`:
+
+```bash
+sed -i 's/\r$//' install.sh
+```
+
+### Windows
+
+Right-click `install.bat` → **Run as administrator**, or from an elevated `cmd`:
+
+```bat
+install.bat
+```
+
+The MSI log is written to `install_log.txt` in the working directory.
+
+---
+
+## What the scripts do
+
+`install.sh` handles three cases automatically:
+
+| Situation | Action |
+|---|---|
+| No UF installed | Fresh install, writes `deploymentclient.conf`, seeds a temp admin user then deletes the seed file, enables boot-start |
+| Older UF installed | Stops the daemon, upgrades the package in place, restarts, re-verifies boot-start |
+| Same version already installed | Re-applies `deploymentclient.conf` and restarts (only when `RECONCILE_CONFIG=1`), otherwise exits |
+
+`install.bat` installs the MSI silently with `AGREETOLICENSE=Yes`, sets the deployment server, then configures the `SplunkForwarder` service for delayed auto-start with restart-on-failure recovery actions.
+
+---
+
+## Verifying
+
+```bash
+/opt/splunkforwarder/bin/splunk status
+/opt/splunkforwarder/bin/splunk list deploy-clients   # run on the deployment server
+```
+
+```bat
+"C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" status
+```
+
+The client should show up in the deployment server's forwarder management within a few minutes.
