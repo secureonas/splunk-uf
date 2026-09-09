@@ -1,4 +1,4 @@
-# Splunk UF Installation Packages (v10.0.4)
+# Splunk UF Installation Packages (v10.2.7)
 
 This repository contains the `wget` commands to download the Splunk Universal Forwarder version 10.0.4 (Build 5ea723e837ec) for various operating systems.
 
@@ -15,9 +15,9 @@ wget -O splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi "https://download.sp
 
 ### Redhat
 ```bash
-wget -O splunkforwarder-10.0.4-5ea723e837ec.x86_64.rpm [https://download.splunk.com/products/universalforwarder/releases/10.0.4/linux/splunkforwarder-10.0.4-5ea723e837ec.x86_64.rpm](https://download.splunk.com/products/universalforwarder/releases/10.0.4/linux/splunkforwarder-10.0.4-5ea723e837ec.x86_64.rpm)
+wget -O splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/10.2.7/linux/splunkforwarder-10.2.7-c0bff5b0fac3-linux-amd64.deb"
 ```
 ### Debian
 ```bash
-wget -O splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb [https://download.splunk.com/products/universalforwarder/releases/10.0.4/linux/splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb](https://download.splunk.com/products/universalforwarder/releases/10.0.4/linux/splunkforwarder-10.0.4-5ea723e837ec-linux-amd64.deb)
+wget -O splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm "https://download.splunk.com/products/universalforwarder/releases/10.2.7/linux/splunkforwarder-10.2.7-c0bff5b0fac3.x86_64.rpm"
 ```
