@@ -8,7 +8,7 @@ This repository contains the `wget` commands to download the Splunk Universal Fo
 
 ### MSI Installer (x64)
 ```bash
-wget -O splunkforwarder-10.0.4-5ea723e837ec-windows-x64.msi [https://download.splunk.com/products/universalforwarder/releases/10.0.4/windows/splunkforwarder-10.0.4-5ea723e837ec-windows-x64.msi](https://download.splunk.com/products/universalforwarder/releases/10.0.4/windows/splunkforwarder-10.0.4-5ea723e837ec-windows-x64.msi)
+wget -O splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi "https://download.splunk.com/products/universalforwarder/releases/10.2.7/windows/splunkforwarder-10.2.7-c0bff5b0fac3-windows-x64.msi"
 ```
 
 ## Linux
