@@ -91,29 +91,3 @@ The MSI log is written to `install_log.txt` in the working directory.
 
 ---
 
-## What the scripts do
-
-`install.sh` handles three cases automatically:
-
-| Situation | Action |
-|---|---|
-| No UF installed | Fresh install, writes `deploymentclient.conf`, seeds a temp admin user then deletes the seed file, enables boot-start |
-| Older UF installed | Stops the daemon, upgrades the package in place, restarts, re-verifies boot-start |
-| Same version already installed | Re-applies `deploymentclient.conf` and restarts (only when `RECONCILE_CONFIG=1`), otherwise exits |
-
-`install.bat` installs the MSI silently with `AGREETOLICENSE=Yes`, sets the deployment server, then configures the `SplunkForwarder` service for delayed auto-start with restart-on-failure recovery actions.
-
----
-
-## Verifying
-
-```bash
-/opt/splunkforwarder/bin/splunk status
-/opt/splunkforwarder/bin/splunk list deploy-clients   # run on the deployment server
-```
-
-```bat
-"C:\Program Files\SplunkUniversalForwarder\bin\splunk.exe" status
-```
-
-The client should show up in the deployment server's forwarder management within a few minutes.
